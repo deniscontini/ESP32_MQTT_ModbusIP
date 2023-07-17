@@ -1,0 +1,24 @@
+version: '3'
+services: 
+    database:
+        image: mysql/mysql-server:5.7.19-1.0.0
+        ports:
+            - "3306:3306"
+        environment: 
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+            - MYSQL_DATABASE=scadalts
+        expose: ["3306"]
+        volumes:
+            -   ./docker/volumes/databases:/home/
+    scadalts:
+        image: scadalts/scadalts:latest
+        ports: 
+            - "8080:8080"
+            - "1883:1883"
+        depends_on: 
+            - database
+        expose: ["8080", "8000"]
+        links:
+            - database:database
