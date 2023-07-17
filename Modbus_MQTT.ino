@@ -13,8 +13,8 @@ extern "C" {
 #define DHTPIN 4 // D4 of NodeMCU is GPIO2
 #define DHTTYPE DHT11
 
-#define WIFI_SSID "Fox_2.4G"
-#define WIFI_PASSWORD "159753@dc"
+#define WIFI_SSID "SSID_Sua_Rede"
+#define WIFI_PASSWORD "Senha_Wifi"
 
 #define MQTT_HOST "broker.hivemq.com"
 #define MQTT_PORT 1883
@@ -113,9 +113,7 @@ void setup() {
 
   mqttClient.onConnect(onMqttConnect);
   mqttClient.onDisconnect(onMqttDisconnect);
-  //mqttClient.onPublish(onMqttPublish);
   mqttClient.setServer(MQTT_HOST, MQTT_PORT);
-  //connectToWifi();
 }
 
 void loop() {
@@ -156,21 +154,4 @@ void loop() {
     Serial.print(humidity);
     Serial.println(" %");
   }
-
-  //uint16_t temperature = dht.readTemperature();
-  //uint16_t humidity = dht.readHumidity();
-
-  /*if (!isnan(temperature) && !isnan(humidity)) {
-    mb.Ireg(TEMPERATURE_REGISTER_ADDRESS, temperature);
-    mb.Ireg(HUMIDITY_REGISTER_ADDRESS, humidity);
-
-    Serial.print("Temperatura: ");
-    Serial.print(temperature);
-    Serial.print(" *C  |  ");
-    Serial.print("Umidade: ");
-    Serial.print(humidity);
-    Serial.println(" %");
-  }*/
-
-  //delay(1000);
 }
